@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 
@@ -21,4 +21,12 @@ describe('AppController (e2e)', () => {
       .expect(200)
       .expect('Hello World!');
   });
+
+  it('/introduction/:name (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/introduction/Mark')
+      .expect(200)
+      .expect('Hello! My name is Mark');
+  });
+
 });
